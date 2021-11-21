@@ -8,16 +8,22 @@
 public class Listings
 {
     private Listing listings;
+    private Listing newListings;
     private Address address;
     private HouseData houseData;
     
-    public Listings(double newPrice, String newAddress, String newPostalCode, String newCity, double newArea, boolean newHasYard){
-        address = new Address(newAddress, newPostalCode, newCity);
-        houseData = new HouseData(newArea, newHasYard, address.getAddress(), address.getPostalCode(), address.getCity());
-        listings = new Listing(newPrice, address.getAddress(), address.getPostalCode(), address.getCity(), houseData.getArea(), houseData.isHasYard());
+    public Listings(){
     }
     
     public void displayListings(){
-        listings.display();
+        if(listings == null){
+            System.out.println("Sem imóveis.");
+        }else{
+            listings.display();
+        }
+    }
+    
+    public void addListings(Listing listings){
+        newListings = new Listing(listings.getPrice(), address.getAddress(), address.getPostalCode(), address.getCity(), houseData.getArea(), houseData.isHasYard());
     }
 }

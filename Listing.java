@@ -90,13 +90,13 @@ public class Listing
     public void display(){
         String yard;
         System.out.println("**************************");
-        System.out.println("# " + identifier + " preco " + price);
+        System.out.println("#" + identifier + " preço: " + price);
         if(address.getPostalCode() == ""){
             System.out.println(address.getAddress() + "," + address.getCity());
         }else{
             System.out.println(address.getAddress() + "," + address.getPostalCode() + "," + address.getCity());
         }
-        System.out.println(houseData.getArea() + " m2");
+        System.out.println(houseData.getArea() + "m2");
         if(houseData.isHasYard()){
             yard = "tem.";
         }else{
