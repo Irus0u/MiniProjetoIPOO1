@@ -3,15 +3,16 @@
  * Classe representante do vendedor.
  *
  * @author (João)
- * @version (21/11/2021)
+ * @version (22/11/2021)
  */
 public class Agent
 {
     private String name;
     private int sales;
-    private static final double COMISSION = 2%100;
-    private Listings listing1;
-    private Listings listing2;
+    private double earning;
+    private static final short COMISSION = 2%100;
+    private static Listing listing1;
+    private static Listing listing2;
     
     public Agent(String newName)
     {
@@ -19,6 +20,7 @@ public class Agent
         sales = 0;
         listing1 = null;
         listing2 = null;
+        earning = 0.0;
     }
     
     public String getName(){
@@ -29,19 +31,29 @@ public class Agent
         return sales;
     }
     
-    public double getComission(){
-        return COMISSION;
+    public double getEarnings(){
+        return earning;
     }
     
     public void display(){
-        System.out.println(name);
-        System.out.println(displayListings());
-        System.out.println("Comissoes: "+COMISSION);
-        System.out.println("Imoveis vendidos: "+sales);
+        getName();
+        displayListings();
+        System.out.println("Comissoes: "+earning);
+        System.out.println("Imóveis vendidos: "+sales);
     }
     
-    public Listing displayListings(){
-        return null;//listing1.displayListings() + listing2.displayListings();
+    public void displayListings(){
+       if(listing1 == null){
+           System.out.println("Sem imóvel.");
+       }else{
+           listing1.display(); 
+       }
+       
+       if(listing2 == null){
+           System.out.println("Sem imóvel."); 
+       }else{
+           listing2.display(); 
+       } 
     }
     
     public boolean isAcceptingListings(){
@@ -52,7 +64,30 @@ public class Agent
         }
     }
     
-    public void addListing(){}
+    public void addListing(Listing addListings){
+        if(isAcceptingListings()){
+            if(listing1 == null){
+                listing1 = addListings;
+            }else{
+                listing2 = addListings;
+            }
+        }else{
+            System.out.println("Lista de imóveis cheia.");
+        }
+    }
     
-    public void markAsSold(){}
+    public void markAsSold(Listing sellListings){
+        sales++;
+        if(sellListings.equals("listing1")){
+            listing1 = null;
+        }else{
+            listing2 = null;
+        }
+        
+        if(sellListings.equals("listing1")){
+            earning = earning + ((listing1.getPrice() * COMISSION)/100);
+        }else{
+            earning = earning + ((listing2.getPrice() * COMISSION)/100); 
+        }
+    }
 }

@@ -75,6 +75,10 @@ public class Listing
         return price;
     }
     
+    public void setPrice(double newPrice){
+        price = newPrice;
+    }
+    
     public Address getAddress(){
         return address;
     }
