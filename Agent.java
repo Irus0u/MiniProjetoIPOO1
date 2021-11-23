@@ -11,8 +11,8 @@ public class Agent
     private int sales;
     private double earning;
     private static final short COMISSION = 2%100;
-    private static Listing listing1;
-    private static Listing listing2;
+    private Listing listing1;
+    private Listing listing2;
     
     public Agent(String newName)
     {

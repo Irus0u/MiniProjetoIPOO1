@@ -71,11 +71,21 @@ public class RealEstateAgency
         }
         
         if(agent1 != null && agent2 !=null){
-            if(agent1.getEarnings() > agent2.getEarnings()){
+            if((agent1.getEarnings() == agent2.getEarnings())){
+                if(agent1.isAcceptingListings()){
+                    agent1.addListing(newListing);
+                }else{
+                    agent2.addListing(newListing);
+                }
+            }
+            
+            if((agent1.getEarnings() < agent2.getEarnings())){
                 if(agent1.isAcceptingListings()){
                     agent1.addListing(newListing);
                 }
-            }else{
+            }
+            
+            if(agent2.getEarnings() < agent1.getEarnings()){
                 if(agent2.isAcceptingListings()){
                     agent2.addListing(newListing);
                 }
@@ -83,23 +93,21 @@ public class RealEstateAgency
         }else{
             System.out.println("Sem agentes para atribuir imoveis.");
         }
-        
-        
     }
     
     public void sellListing(Listing listing){
-        if(listing.equals("listing1")){
-            
+        if(listing1 == listing){
             listings.setListing1(null);
             earning = earning + ((listing1.getPrice() * COMISSION)/100);
-            listing1 = null;
             if(agent1.getListing1() == listing){
                 agent1.markAsSold(listing);
             }else{
                 agent2.markAsSold(listing);
             }
-        }else if(listing.equals("listing2")){
-            
+            listing1 = null;
+        }
+        
+        if(listing2 == listing){
             listings.setListing2(null);
             earning = earning + ((listing2.getPrice() * COMISSION)/100);
             listing2 = null;
@@ -108,8 +116,9 @@ public class RealEstateAgency
             }else{
                 agent2.markAsSold(listing);
             }
-        }else if(listing.equals("listing3")){
-            
+        }
+        
+        if(listing3 == listing){
             listings.setListing3(null);
             earning = earning + ((listing3.getPrice() * COMISSION)/100);
             listing3 = null;
@@ -118,8 +127,9 @@ public class RealEstateAgency
             }else{
                 agent2.markAsSold(listing);
             }
-        }else{
-            
+        }
+        
+        if(listing4 == listing){
             listings.setListing4(null);
             earning = earning + ((listing4.getPrice() * COMISSION)/100);
             listing4 = null;
@@ -128,15 +138,24 @@ public class RealEstateAgency
             }else{
                 agent2.markAsSold(listing);
             }
-        }      
+        }
     }
     
     public void displayLocatedAt(String city){
-        if(address.getCity().equals(city)){
-            listings.displayListings();
+        if((listing1 != null) && (listing1.getAddress().getCity() == city)){
+            listing1.display();
         }
-        else{
-            System.out.println("Imovel nao encontrado, tente outra cidade.");
+        
+        if((listing2 != null) && (listing2.getAddress().getCity() == city)){
+            listing2.display();
+        }
+        
+        if((listing3 != null) && (listing3.getAddress().getCity() == city)){
+            listing3.display();
+        }
+        
+        if((listing4 != null) && (listing4.getAddress().getCity() == city)){
+            listing4.display();
         }
     }
     
