@@ -78,16 +78,17 @@ public class Agent
     
     public void markAsSold(Listing sellListings){
         sales++;
-        if(sellListings.equals("listing1")){
-            listing1 = null;
-        }else{
-            listing2 = null;
-        }
         
         if(sellListings.equals("listing1")){
             earning = earning + ((listing1.getPrice() * COMISSION)/100);
         }else{
             earning = earning + ((listing2.getPrice() * COMISSION)/100); 
+        }
+        
+        if(sellListings.equals("listing1")){
+            listing1 = null;
+        }else{
+            listing2 = null;
         }
     }
 }

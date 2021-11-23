@@ -36,6 +36,7 @@ public class RealEstateAgency
         address = new Address(newAddress, newPostalCode, newCity);
         houseData = new HouseData(newArea, newHasYard, address.getAddress(), address.getPostalCode(), address.getCity());
         listing = new Listing(newPrice, address.getAddress(), address.getPostalCode(), address.getCity(), houseData.getArea(), houseData.isHasYard());
+        listings = new Listings();
         listings.addListings(listing);
     }
     
