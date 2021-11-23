@@ -31,7 +31,7 @@ public class Agent
         }
     }
     
-        public Listing getListing2(){
+    public Listing getListing2(){
         if(listing2 != null){
             return listing2;
         }else{
