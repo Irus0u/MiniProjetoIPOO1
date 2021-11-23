@@ -94,7 +94,7 @@ public class Listing
     public void display(){
         String yard;
         System.out.println("**************************");
-        System.out.println("#" + identifier + " preço: " + price);
+        System.out.println("#" + identifier + " preco: " + price);
         if(address.getPostalCode() == ""){
             System.out.println(address.getAddress() + "," + address.getCity());
         }else{
@@ -104,7 +104,7 @@ public class Listing
         if(houseData.isHasYard()){
             yard = "tem.";
         }else{
-            yard = "não tem.";
+            yard = "nao tem.";
         }
         System.out.println("Quintal: " + yard);
     }

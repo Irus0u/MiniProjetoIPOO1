@@ -21,7 +21,7 @@ public class Listings
     
    public Listing getListing1(){
        if(listing1 != null){
-       return listing1; 
+           return listing1; 
        }else{
            return null; 
        }
@@ -29,7 +29,7 @@ public class Listings
    
    public Listing getListing2(){
        if(listing2 != null){
-       return listing2; 
+           return listing2; 
        }else{
            return null; 
        }
@@ -37,7 +37,7 @@ public class Listings
    
    public Listing getListing3(){
        if(listing3 != null){
-       return listing3; 
+           return listing3; 
        }else{
            return null; 
        }
@@ -45,7 +45,7 @@ public class Listings
    
    public Listing getListing4(){
        if(listing4 != null){
-       return listing4; 
+           return listing4; 
        }else{
            return null; 
        }
@@ -69,25 +69,21 @@ public class Listings
    
    public void displayListings(){
        if(listing1 == null){
-           System.out.println("----");
        }else{
            listing1.display(); 
        } 
        
        if(listing2 == null){
-           System.out.println("----"); 
        }else{
            listing2.display(); 
        } 
        
        if(listing3 == null){
-           System.out.println("----"); 
        }else{
            listing3.display(); 
        } 
        
        if(listing4 == null){
-           System.out.println("----"); 
        }else{
            listing4.display();        
        }
