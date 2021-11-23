@@ -23,6 +23,22 @@ public class Agent
         earning = 0.0;
     }
     
+    public Listing getListing1(){
+        if(listing1 != null){
+            return listing1;
+        }else{
+            return null;
+        }
+    }
+    
+        public Listing getListing2(){
+        if(listing2 != null){
+            return listing2;
+        }else{
+            return null;
+        }
+    }
+    
     public String getName(){
         return name;
     }
@@ -36,24 +52,24 @@ public class Agent
     }
     
     public void display(){
-        getName();
+        System.out.println("Nome: "+name);
+        System.out.println("Imoveis: ");
         displayListings();
-        System.out.println("Comissoes: "+earning);
+        System.out.println("Comissoes: "+earning+"$");
         System.out.println("Imoveis vendidos: "+sales);
     }
     
     public void displayListings(){
-       if(listing1 == null){
-           System.out.println("Sem imovel.");
+       if(listing1 == null && listing2 == null){
+           System.out.println("Sem imoveis.");
+       }else if(listing1 != null && listing2 == null){
+           listing1.display();
+       }else if(listing2 != null && listing1 == null){
+           listing2.display();
        }else{
-           listing1.display(); 
+           listing1.display();
+           listing2.display();
        }
-       
-       if(listing2 == null){
-           System.out.println("Sem imovel."); 
-       }else{
-           listing2.display(); 
-       } 
     }
     
     public boolean isAcceptingListings(){

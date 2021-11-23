@@ -17,8 +17,8 @@ public class RealEstateAgency
     private HouseData houseData;
     private static final short COMISSION = 3%100;
     private double earning;
-    private Agent agent;
-
+    private Agent agent1;
+    private Agent agent2;
     
     public RealEstateAgency(String name)
     {
@@ -30,36 +30,61 @@ public class RealEstateAgency
         listing3 = null;
         listing4 = null;
         houseData = null;
-        agent = null;
+        agent1 = null;
+        agent2 = null;
         earning = 0.0;
     }
     
-    public void addAgent(String name){
-        agent = new Agent(name);
+    public void addAgent(Agent agent){
+        if(agent1 == null){
+            agent1 = agent;
+        }else{
+            agent2 = agent;
+        }
     }
     
-    public void addListing(Listing newListing){      
-        if(listing1 == null){
-            listing1 = newListing;
-            address = listing1.getAddress();
-            houseData = listing1.getHouseData();
-            listings.addListings(listing1);
-        }else if(listing2 == null){
-            listing2 = newListing;
-            address = listing2.getAddress();
-            houseData = listing2.getHouseData();
-            listings.addListings(listing2);
-        }else if(listing3 == null){
-            listing3 = newListing;
-            address = listing3.getAddress();
-            houseData = listing3.getHouseData();
-            listings.addListings(listing3);
+    public void addListing(Listing newListing){
+        if(isAbleToAtribute(newListing)){
+            if(listing1 == null){
+                listing1 = newListing;
+                address = listing1.getAddress();
+                houseData = listing1.getHouseData();
+                listings.addListings(listing1);
+            }else if(listing2 == null){
+                listing2 = newListing;
+                address = listing2.getAddress();
+                houseData = listing2.getHouseData();
+                listings.addListings(listing2);
+            }else if(listing3 == null){
+                listing3 = newListing;
+                address = listing3.getAddress();
+                houseData = listing3.getHouseData();
+                listings.addListings(listing3);
+            }else{
+                listing4 = newListing;
+                address = listing4.getAddress();
+                houseData = listing4.getHouseData();
+                listings.addListings(listing4);
+            }
         }else{
-            listing4 = newListing;
-            address = listing4.getAddress();
-            houseData = listing4.getHouseData();
-            listings.addListings(listing4);
+            System.out.println("Operacao nao efetuada, valor minimo de 4000$/m2");
         }
+        
+        if(agent1 != null && agent2 !=null){
+            if(agent1.getEarnings() > agent2.getEarnings()){
+                if(agent1.isAcceptingListings()){
+                    agent1.addListing(newListing);
+                }
+            }else{
+                if(agent2.isAcceptingListings()){
+                    agent2.addListing(newListing);
+                }
+            }
+        }else{
+            System.out.println("Sem agentes para atribuir imoveis.");
+        }
+        
+        
     }
     
     public void sellListing(Listing listing){
@@ -68,21 +93,41 @@ public class RealEstateAgency
             listings.setListing1(null);
             earning = earning + ((listing1.getPrice() * COMISSION)/100);
             listing1 = null;
+            if(agent1.getListing1() == listing){
+                agent1.markAsSold(listing);
+            }else{
+                agent2.markAsSold(listing);
+            }
         }else if(listing.equals("listing2")){
             
             listings.setListing2(null);
             earning = earning + ((listing2.getPrice() * COMISSION)/100);
             listing2 = null;
+            if(agent1.getListing2() == listing){
+                agent1.markAsSold(listing);
+            }else{
+                agent2.markAsSold(listing);
+            }
         }else if(listing.equals("listing3")){
             
             listings.setListing3(null);
             earning = earning + ((listing3.getPrice() * COMISSION)/100);
             listing3 = null;
+            if(agent1.getListing1() == listing){
+                agent1.markAsSold(listing);
+            }else{
+                agent2.markAsSold(listing);
+            }
         }else{
             
             listings.setListing4(null);
             earning = earning + ((listing4.getPrice() * COMISSION)/100);
             listing4 = null;
+            if(agent1.getListing2() == listing){
+                agent1.markAsSold(listing);
+            }else{
+                agent2.markAsSold(listing);
+            }
         }      
     }
     
@@ -144,23 +189,41 @@ public class RealEstateAgency
     }
     
     public void display(){
-        System.out.println("**************************");
-        System.out.println(name);
-        if((listings == null) && (listing3 != null)&&(listing4 != null)){
+        int i = name.length();
+        int j;
+        for(j=0; j<i+2; j++){
+            System.out.print("*");  
+        }
+        System.out.println("");
+        System.out.println("*"+ name +"*");
+        for(j=0; j<i+2; j++){
+            System.out.print("*");  
+        }
+        System.out.println("");
+        System.out.println("");
+        
+        if((listings == null)){
             System.out.println("Lista de imoveis indisponivel!");
         }else{
             System.out.println("Imoveis:");
-            listing1.display();
-            listing2.display();
-            listing3.display();
-            listing4.display();
-            //listings.displayListings();
+            listings.displayListings();
         }
-        if(agent == null){
-            System.out.println("Agente: ");    
+        if(agent1 == null && agent2 == null){
+            System.out.println("Agentes: ");    
         }else{
-            agent.getName();
+            System.out.println("Agentes: ");
+            System.out.println(agent1.getName());
+            System.out.println(agent2.getName());
         }
-        System.out.println(earning+" lucro");
+        System.out.println("Lucro: "+earning+"$");
     }
+    
+    private boolean isAbleToAtribute(Listing listing){
+        if((listing.getPrice() * listing.getHouseData().getArea()) < 4000){
+            return false;
+        }else{
+            return true;
+        } 
+    }
+    
 }

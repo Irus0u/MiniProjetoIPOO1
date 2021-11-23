@@ -10,6 +10,7 @@ public class Listing
     private double price;
     private Address address;
     private HouseData houseData;
+    private int listingIdentifier;
     private static int identifier;
     
     public Listing(double newPrice, String newAddress, String newPostalCode, String newCity, double newArea)
@@ -27,6 +28,7 @@ public class Listing
         houseData = new HouseData(newArea, false, address.getAddress(), address.getPostalCode(), address.getCity());
         
         identifier++;
+        listingIdentifier += identifier;
     }
 
     public Listing(double newPrice, String newAddress, String newPostalCode, String newCity, double newArea, boolean newHasYard)
@@ -88,13 +90,13 @@ public class Listing
     }
     
     public int getIdentifier(){
-        return identifier;
+        return listingIdentifier;
     }
     
     public void display(){
         String yard;
-        System.out.println("**************************");
-        System.out.println("#" + identifier + " preco: " + price);
+        System.out.println("");
+        System.out.println("#" + listingIdentifier + " preco: " + price + "$");
         if(address.getPostalCode() == ""){
             System.out.println(address.getAddress() + "," + address.getCity());
         }else{
@@ -107,5 +109,6 @@ public class Listing
             yard = "nao tem.";
         }
         System.out.println("Quintal: " + yard);
+        System.out.println("");
     }
 }
