@@ -2,7 +2,7 @@
 /**
  * Classe representante da agencia
  *
- * @author (João)
+ * @author (Joao)
  * @version (22/11/2021)
  */
 public class RealEstateAgency
@@ -29,13 +29,11 @@ public class RealEstateAgency
     }
     
     public void addAgent(String name){
-        new Agent(name);
+        agent = new Agent(name);
     }
     
-    public void addListing(double newPrice, String newAddress, String newPostalCode, String newCity, double newArea, boolean newHasYard){
-        address = new Address(newAddress, newPostalCode, newCity);
-        houseData = new HouseData(newArea, newHasYard, address.getAddress(), address.getPostalCode(), address.getCity());
-        listing = new Listing(newPrice, address.getAddress(), address.getPostalCode(), address.getCity(), houseData.getArea(), houseData.isHasYard());
+    public void addListing(Listing newListing){
+        listing = newListing;
         listings = new Listings();
         listings.addListings(listing);
     }
@@ -65,7 +63,7 @@ public class RealEstateAgency
             listing.display();
         }
         else{
-            System.out.println("Imóvel não encontrado, tente outra cidade.");
+            System.out.println("Imovel nao encontrado, tente outra cidade.");
         }
     }
     
@@ -74,7 +72,7 @@ public class RealEstateAgency
             listing.display();
         }
         else{
-            System.out.println("Imóvel não encontrado, tente outros valores.");
+            System.out.println("Imovel nao encontrado, tente outros valores.");
         }    
     }
     
@@ -82,7 +80,7 @@ public class RealEstateAgency
         if(houseData.isHasYard()){
             listing.display();
         }else{
-            System.out.println("Imóvel com quintal não encontrado.");
+            System.out.println("Imovel com quintal nao encontrado.");
         }   
     }
     
@@ -95,9 +93,17 @@ public class RealEstateAgency
     public void display(){
         System.out.println("**************************");
         System.out.println(name);
-        System.out.println("Imóveis:");
-        listings.displayListings();
-        agent.getName();
+        if(listings == null){
+            System.out.println("Lista de imoveis indisponivel!");
+        }else{
+            System.out.println("Imoveis:");
+            listings.displayListings();
+        }
+        if(agent == null){
+            System.out.println("----");    
+        }else{
+            agent.getName();
+        }
         System.out.println(earning+" lucro");
     }
 }

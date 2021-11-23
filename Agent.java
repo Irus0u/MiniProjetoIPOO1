@@ -39,18 +39,18 @@ public class Agent
         getName();
         displayListings();
         System.out.println("Comissoes: "+earning);
-        System.out.println("Imóveis vendidos: "+sales);
+        System.out.println("Imoveis vendidos: "+sales);
     }
     
     public void displayListings(){
        if(listing1 == null){
-           System.out.println("Sem imóvel.");
+           System.out.println("Sem imovel.");
        }else{
            listing1.display(); 
        }
        
        if(listing2 == null){
-           System.out.println("Sem imóvel."); 
+           System.out.println("Sem imovel."); 
        }else{
            listing2.display(); 
        } 
@@ -64,31 +64,30 @@ public class Agent
         }
     }
     
-    public void addListing(Listing addListings){
+    public void addListing(Listing addListing){
         if(isAcceptingListings()){
             if(listing1 == null){
-                listing1 = addListings;
+                listing1 = addListing;
             }else{
-                listing2 = addListings;
+                listing2 = addListing;
             }
         }else{
-            System.out.println("Lista de imóveis cheia.");
+            System.out.println("Lista de imoveis cheia.");
         }
     }
     
-    public void markAsSold(Listing sellListings){
+    public void markAsSold(Listing sellListing){
         sales++;
-        
-        if(sellListings.equals("listing1")){
-            earning = earning + ((listing1.getPrice() * COMISSION)/100);
+        if((listing1 == null)&&(listing2 == null)){
+            System.out.println("Sem imoveis para venda.");
         }else{
-            earning = earning + ((listing2.getPrice() * COMISSION)/100); 
-        }
-        
-        if(sellListings.equals("listing1")){
-            listing1 = null;
-        }else{
-            listing2 = null;
+            if(listing1 != null && listing2 == null){
+                earning = earning + ((listing1.getPrice() * COMISSION)/100);
+                listing1 = null;
+            }else{
+                earning = earning + ((listing2.getPrice() * COMISSION)/100);
+                listing2 = null;
+            }
         }
     }
 }

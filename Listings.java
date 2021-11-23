@@ -7,28 +7,6 @@
  */
 public class Listings
 {
-    /*
-    private Listing listings;
-    private Listing newListings;
-    private Address address;
-    private HouseData houseData;
-    
-    public Listings(){
-    }
-    
-    public void displayListings(){
-        if(listings == null){
-            System.out.println("Sem imóveis.");
-        }else{
-            listings.display();
-        }
-    }
-    
-    public void addListings(Listing listings){
-        newListings = new Listing(listings.getPrice(), address.getAddress(), address.getPostalCode(), address.getCity(), houseData.getArea(), houseData.isHasYard());
-    }
-    */
-   
    private Listing listing1;
    private Listing listing2;
    private Listing listing3;
@@ -91,25 +69,25 @@ public class Listings
    
    public void displayListings(){
        if(listing1 == null){
-           System.out.println("Sem imóvel.");
+           System.out.println("----");
        }else{
            listing1.display(); 
        } 
        
        if(listing2 == null){
-           System.out.println("Sem imóvel."); 
+           System.out.println("----"); 
        }else{
            listing2.display(); 
        } 
        
        if(listing3 == null){
-           System.out.println("Sem imóvel."); 
+           System.out.println("----"); 
        }else{
            listing3.display(); 
        } 
        
        if(listing4 == null){
-           System.out.println("Sem imóvel."); 
+           System.out.println("----"); 
        }else{
            listing4.display();        
        }
