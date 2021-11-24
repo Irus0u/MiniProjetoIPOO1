@@ -6,19 +6,20 @@
  */
 public class RealEstateAgency
 {
-    private String name;
-    private Listings listings;
-    private Listing listing1;
-    private Listing listing2;
-    private Listing listing3;
-    private Listing listing4;
-    private Address address;
-    private HouseData houseData;
-    private static final short COMISSION = 3%100;
-    private double earning;
-    private Agent agent1;
-    private Agent agent2;
+    private String name; //nome da agencia
+    private Listings listings; //lista de imoveis
+    private Listing listing1; //imovel1
+    private Listing listing2; //imovel2
+    private Listing listing3; //imovel3
+    private Listing listing4; //imovel4
+    private Address address; //endereco do imovel
+    private HouseData houseData; //info do imovel
+    private static final short COMISSION = 3%100; //comissao da agencia
+    private double earning; //ganhos da agencia
+    private Agent agent1; //agente1
+    private Agent agent2; //agente2
     
+    //construtor da agencia
     public RealEstateAgency(String name)
     {
         this.name = name;
@@ -34,6 +35,7 @@ public class RealEstateAgency
         earning = 0.0;
     }
     
+    //metodo para adicionar agentes
     public void addAgent(Agent agent){
         if(agent1 == null){
             agent1 = agent;
@@ -41,7 +43,12 @@ public class RealEstateAgency
             agent2 = agent;
         }
     }
-    
+
+    //metodo para adicionar imoveis
+    //verifica se um imovel ta apto para ser atribuido
+    //adiciona o imovel criado a lista
+    //verifica se um agente esta apto para receber um imovel 
+    //atribui um imovel a um agente
     public void addListing(Listing newListing){
         if(isAbleToAtribute(newListing)){
             if(listing1 == null){
@@ -93,122 +100,81 @@ public class RealEstateAgency
             System.out.println("Sem agentes para atribuir imoveis.");
         }
     }
-    /*
+    
+    //metodo para vender um imovel
+    //verifica se o imovel recebido existe
+    //retira-o da lista
+    //adiciona os ganhos
+    //retira o imovel do agente e adiciona os ganhos ao agente
     public void sellListing(Listing listing){
         if(listing1 == listing){
+    
             listings.setListing1(null);
-            earning = earning + ((listing1.getPrice() * COMISSION)/100);
+    
+            earning += listing1.getPrice() * COMISSION / 100;
+    
             if(agent1.getListing1() == listing){
                 agent1.markAsSold(listing);
-            }else{
+            }else if(agent1.getListing2() == listing){
+                agent1.markAsSold(listing);
+            }else if(agent2.getListing1() == listing){
+                agent2.markAsSold(listing);
+            }else if(agent2.getListing2() == listing){
                 agent2.markAsSold(listing);
             }
             listing1 = null;
-        }
-        
-        if(listing2 == listing){
+    
+        }else if(listing2 == listing){
             listings.setListing2(null);
-            earning = earning + ((listing2.getPrice() * COMISSION)/100);
-            listing2 = null;
-            if(agent1.getListing2() == listing){
-                agent1.markAsSold(listing);
-            }else{
-                agent2.markAsSold(listing);
-            }
-        }
-        
-        if(listing3 == listing){
-            listings.setListing3(null);
-            earning = earning + ((listing3.getPrice() * COMISSION)/100);
-            listing3 = null;
+            earning += listing2.getPrice() * COMISSION / 100;
+    
             if(agent1.getListing1() == listing){
                 agent1.markAsSold(listing);
-            }else{
-                agent2.markAsSold(listing);
-            }
-        }
-        
-        if(listing4 == listing){
-            listings.setListing4(null);
-            earning = earning + ((listing4.getPrice() * COMISSION)/100);
-            listing4 = null;
-            if(agent1.getListing2() == listing){
+            }else if(agent1.getListing2() == listing){
                 agent1.markAsSold(listing);
-            }else{
+            }else if(agent2.getListing1() == listing){
+                agent2.markAsSold(listing);
+            }else if(agent2.getListing2() == listing){
                 agent2.markAsSold(listing);
             }
+            listing2 = null;
+    
+        }else if(listing3 == listing){
+            listings.setListing3(null);
+            earning += listing3.getPrice() * COMISSION / 100;
+    
+            if(agent1.getListing1() == listing){
+                agent1.markAsSold(listing);
+            }else if(agent1.getListing2() == listing){
+                agent1.markAsSold(listing);
+            }else if(agent2.getListing1() == listing){
+                agent2.markAsSold(listing);
+            }else if(agent2.getListing2() == listing){
+                agent2.markAsSold(listing);
+            }
+            listing3 = null;
+    
+        }else if(listing4 == listing){
+            listings.setListing4(null);
+            earning += listing4.getPrice() * COMISSION / 100;
+    
+            if(agent1.getListing1() == listing){
+                agent1.markAsSold(listing);
+            }else if(agent1.getListing2() == listing){
+                agent1.markAsSold(listing);
+            }else if(agent2.getListing1() == listing){
+                agent2.markAsSold(listing);
+            }else if(agent2.getListing2() == listing){
+                agent2.markAsSold(listing);
+            }
+            listing4 = null;
+    
+        }else{
+            System.out.println("Imovel nao encontrado.");
         }
     }
-    */
    
-    public void sellListing(Listing listing){
-    if(listing1 == listing){
-
-        listings.setListing1(null);
-
-        earning += listing1.getPrice() * COMISSION / 100;
-
-        if(agent1.getListing1() == listing){
-            agent1.markAsSold(listing);
-        }else if(agent1.getListing2() == listing){
-            agent1.markAsSold(listing);
-        }else if(agent2.getListing1() == listing){
-            agent2.markAsSold(listing);
-        }else if(agent2.getListing2() == listing){
-            agent2.markAsSold(listing);
-        }
-        listing1 = null;
-
-    }else if(listing2 == listing){
-        listings.setListing2(null);
-        earning += listing2.getPrice() * COMISSION / 100;
-
-        if(agent1.getListing1() == listing){
-            agent1.markAsSold(listing);
-        }else if(agent1.getListing2() == listing){
-            agent1.markAsSold(listing);
-        }else if(agent2.getListing1() == listing){
-            agent2.markAsSold(listing);
-        }else if(agent2.getListing2() == listing){
-            agent2.markAsSold(listing);
-        }
-        listing2 = null;
-
-    }else if(listing3 == listing){
-        listings.setListing3(null);
-        earning += listing3.getPrice() * COMISSION / 100;
-
-        if(agent1.getListing1() == listing){
-            agent1.markAsSold(listing);
-        }else if(agent1.getListing2() == listing){
-            agent1.markAsSold(listing);
-        }else if(agent2.getListing1() == listing){
-            agent2.markAsSold(listing);
-        }else if(agent2.getListing2() == listing){
-            agent2.markAsSold(listing);
-        }
-        listing3 = null;
-
-    }else if(listing4 == listing){
-        listings.setListing4(null);
-        earning += listing4.getPrice() * COMISSION / 100;
-
-        if(agent1.getListing1() == listing){
-            agent1.markAsSold(listing);
-        }else if(agent1.getListing2() == listing){
-            agent1.markAsSold(listing);
-        }else if(agent2.getListing1() == listing){
-            agent2.markAsSold(listing);
-        }else if(agent2.getListing2() == listing){
-            agent2.markAsSold(listing);
-        }
-        listing4 = null;
-
-    }else{
-        System.out.println("Imovel nao encontrado.");
-    }
-}
-   
+    //verifica se existem imoveis numa cidade
     public void displayLocatedAt(String city){
         if((listing1 != null) && (listing1.getAddress().getCity() == city)){
             listing1.display();
@@ -227,6 +193,7 @@ public class RealEstateAgency
         }
     }
     
+    //verifica se existem imoveis dentro dos valores expecificados
     public void displayListingsBetween(double value1, double value2){
         if(listing1 !=null){
             if((listing1.getPrice()>= value1) && (listing1.getPrice()<= value2)){
@@ -253,6 +220,7 @@ public class RealEstateAgency
         }
     }
     
+    //mostra os imoveis com quintal
     public void displayListingsWithYard(){
         if((listing1 != null) && (listing1.getHouseData().isHasYard())){
             listing1.display();
@@ -271,10 +239,12 @@ public class RealEstateAgency
         }  
     }
     
+    //devolve a lista de imoveis
     public void displayListings(){
         listings.displayListings();
     }
     
+    //devolve a informacao da agencia
     public void display(){
         int i = name.length();
         int j;
@@ -305,6 +275,7 @@ public class RealEstateAgency
         System.out.println("Lucro: "+earning+"$");
     }
     
+    //verifica se um imovel ta apto para ser recebido e atribuido
     private boolean isAbleToAtribute(Listing listing){
         if((listing.getPrice() * listing.getHouseData().getArea()) < 4000){
             return false;

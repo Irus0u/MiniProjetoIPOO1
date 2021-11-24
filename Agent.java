@@ -14,6 +14,7 @@ public class Agent
     private Listing listing1;
     private Listing listing2;
     
+    //construtor de agentes
     public Agent(String newName)
     {
         name = newName;
@@ -23,6 +24,7 @@ public class Agent
         earning = 0.0;
     }
     
+    //selector do imovel1
     public Listing getListing1(){
         if(listing1 != null){
             return listing1;
@@ -31,6 +33,7 @@ public class Agent
         }
     }
     
+    //selector do imovel2
     public Listing getListing2(){
         if(listing2 != null){
             return listing2;
@@ -39,26 +42,32 @@ public class Agent
         }
     }
     
+    //modificador do imovel1
     public void setListing1(Listing listing){
         listing1 = listing;
     }
     
+    //modificador do imovel2
     public void setListing2(Listing listing){
         listing2 = listing;
     }
     
+    //selector do nome do agente
     public String getName(){
         return name;
     }
-    
+
+    //selectore das vendas do agente
     public int getSales(){
         return sales;
     }
     
+    //selector dos ganhos do agente
     public double getEarnings(){
         return earning;
     }
     
+    //display das informacoes do agente
     public void display(){
         System.out.println("Nome: "+name);
         System.out.println("Imoveis: ");
@@ -67,6 +76,7 @@ public class Agent
         System.out.println("Imoveis vendidos: "+sales);
     }
     
+    //display das informacoes relativas aos imoveis do agente
     public void displayListings(){
        if(listing1 == null && listing2 == null){
            System.out.println("Sem imoveis.");
@@ -80,6 +90,7 @@ public class Agent
        }
     }
     
+    //verificador de se um agente pode receber imoveis
     public boolean isAcceptingListings(){
         if((listing1 != null) && (listing2 != null)){
             return false;
@@ -88,6 +99,7 @@ public class Agent
         }
     }
     
+    //metodo para atribuir imoveis ao agente
     public void addListing(Listing listing){
         if(isAcceptingListings()){
             if(listing1 == null){
@@ -100,6 +112,8 @@ public class Agent
         }
     }
 
+    //metodo para marcar como vendido um imovel
+    //verifica se o imovel recebido é igual a algum dos do agente
     public void markAsSold(Listing listing){
         sales++;
         if(listing1 == null && listing2 == null){

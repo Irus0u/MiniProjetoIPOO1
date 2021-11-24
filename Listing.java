@@ -13,6 +13,7 @@ public class Listing
     private int listingIdentifier;
     private static int identifier;
     
+    //construtor imovel1
     public Listing(double newPrice, String newAddress, String newPostalCode, String newCity, double newArea)
     {
         if(newPrice > 0){
@@ -31,6 +32,7 @@ public class Listing
         listingIdentifier = identifier;
     }
 
+    //construtor imovel2
     public Listing(double newPrice, String newAddress, String newPostalCode, String newCity, double newArea, boolean newHasYard)
     {
         if(newPrice > 0){
@@ -49,6 +51,7 @@ public class Listing
         listingIdentifier = identifier;
     }
     
+    //construtor imovel3
     public Listing(double newPrice, String newAddress, double newArea, String newCity, boolean newHasYard)
     {
         if(newPrice > 0){
@@ -67,6 +70,7 @@ public class Listing
         listingIdentifier = identifier;
     }
     
+    //verificar se existe uma cidade
     public boolean isLocatedAt(String newCity){
         if(newCity == address.getCity()){
             return true;
@@ -75,26 +79,32 @@ public class Listing
         }
     }
     
+    //selector preco
     public double getPrice(){
         return price;
     }
     
+    //modificador preco
     public void setPrice(double newPrice){
         price = newPrice;
     }
     
+    //selector objeto address - retorna a referencia do objeto
     public Address getAddress(){
         return address;
     }
     
+    //selector objeto houseData - retorna a referencia do objeto
     public HouseData getHouseData(){
         return houseData;
     }
     
+    //selector identifier - de cada imovel
     public int getIdentifier(){
         return listingIdentifier;
     }
     
+    //display das informacoes do imovel
     public void display(){
         String yard;
         System.out.println("");
