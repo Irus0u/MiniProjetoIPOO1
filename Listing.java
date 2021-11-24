@@ -28,7 +28,7 @@ public class Listing
         houseData = new HouseData(newArea, false, address.getAddress(), address.getPostalCode(), address.getCity());
         
         identifier++;
-        listingIdentifier += identifier;
+        listingIdentifier = identifier;
     }
 
     public Listing(double newPrice, String newAddress, String newPostalCode, String newCity, double newArea, boolean newHasYard)
@@ -46,6 +46,7 @@ public class Listing
         houseData = new HouseData(newArea, newHasYard, address.getAddress(), address.getPostalCode(), address.getCity());
         
         identifier++;
+        listingIdentifier = identifier;
     }
     
     public Listing(double newPrice, String newAddress, double newArea, String newCity, boolean newHasYard)
@@ -62,7 +63,8 @@ public class Listing
         //atribuir os valores da classe HouseData
         houseData = new HouseData(newArea, newHasYard, address.getAddress(), "", address.getCity());
 
-        identifier++;      
+        identifier++;  
+        listingIdentifier = identifier;
     }
     
     public boolean isLocatedAt(String newCity){

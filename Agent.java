@@ -39,6 +39,14 @@ public class Agent
         }
     }
     
+    public void setListing1(Listing listing){
+        listing1 = listing;
+    }
+    
+    public void setListing2(Listing listing){
+        listing2 = listing;
+    }
+    
     public String getName(){
         return name;
     }
@@ -80,30 +88,33 @@ public class Agent
         }
     }
     
-    public void addListing(Listing addListing){
+    public void addListing(Listing listing){
         if(isAcceptingListings()){
             if(listing1 == null){
-                listing1 = addListing;
+                listing1 = listing;
             }else{
-                listing2 = addListing;
+                listing2 = listing;
             }
         }else{
             System.out.println("Lista de imoveis cheia.");
         }
     }
-    
-    public void markAsSold(Listing sellListing){
+
+    public void markAsSold(Listing listing){
         sales++;
-        if((listing1 == null)&&(listing2 == null)){
+        if(listing1 == null && listing2 == null){
             System.out.println("Sem imoveis para venda.");
         }else{
-            if(listing1 != null && listing2 == null){
-                earning = earning + ((listing1.getPrice() * COMISSION)/100);
-                listing1 = null;
-            }else{
-                earning = earning + ((listing2.getPrice() * COMISSION)/100);
+            if(listing1 == listing){
+                earning += ((listing1.getPrice() * COMISSION)/100);
+                listing1 = null;  
+            }else if(listing2 == listing){
+                earning +=  ((listing2.getPrice() * COMISSION)/100);
                 listing2 = null;
+            }else{
+                System.out.println("Imovel nao encontrado.");
             }
         }
     }
 }
+
